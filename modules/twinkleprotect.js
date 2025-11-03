@@ -17,7 +17,7 @@ Twinkle.protect = function twinkleprotect() {
 		return;
 	}
 
-	Twinkle.addPortletLink(Twinkle.protect.callback, Morebits.userIsSysop ? 'PP' : 'RPP', 'tw-rpp',
+	Twinkle.addPortletLink(Twinkle.protect.callback, Morebits.userIsSysop ? 'PH' : 'RPP', 'tw-rpp',
 		Morebits.userIsSysop ? 'Lindungi halaman' : 'Meminta perlindungan halaman');
 };
 

@@ -494,8 +494,8 @@ Twinkle.tag.updateSortOrder = function(e) {
 			Twinkle.tag.status.numRemoved += this.checked ? -1 : 1;
 		}
 
-		const firstPart = 'Menambanhkan ' + Twinkle.tag.status.numAdded + ' tag' + (Twinkle.tag.status.numAdded);
-		const secondPart = 'Menghilangkan ' + Twinkle.tag.status.numRemoved + ' tag' + (Twinkle.tag.status.numRemoved);
+		const firstPart = 'Menambahkan ' + Twinkle.tag.status.numAdded + ' tag' + (Twinkle.tag.status.numAdded === 1 ? '' : ''); // Di Bahasa Indonesia tidak ada bentuk jamak 's'
+		const secondPart = 'Menghilangkan ' + Twinkle.tag.status.numRemoved + ' tag' + (Twinkle.tag.status.numRemoved === 1 ? '' : '');
 		statusNode.textContent =
 			(Twinkle.tag.status.numAdded ? '  ' + firstPart : '') +
 			(Twinkle.tag.status.numRemoved ? (Twinkle.tag.status.numAdded ? '; ' : '  ') + secondPart : '');
@@ -510,7 +510,7 @@ Twinkle.tag.updateSortOrder = function(e) {
 var generateLinks = function(checkbox) {
 	const link = Morebits.htmlNode('a', '>');
 	link.setAttribute('class', 'tag-template-link');
-	const tagname = checkbox.values;
+	const tagname = checkbox.value;
 	link.setAttribute('href', mw.util.getUrl(
 		(!tagname.includes(':') ? 'Templat:' : '') +
 		(!tagname.includes('|') ? tagname : tagname.slice(0, tagname.indexOf('|')))
@@ -1227,7 +1227,7 @@ Twinkle.tag.fileList = {
 			}
 		},
 		{ label: '{{ClearType}}: gambar (selain tangkapan layar) dengan anti-aliasing ClearType', value: 'ClearType' },
-		{ label: '{{Fake SVG}}: SVG solely containing raster graphics without true vector content', value: 'Fake SVG' },
+		{ label: '{{Fake SVG}}: SVG hanya berisi grafik buram tanpa konten vektor sebenarnya', value: 'Fake SVG' },
 		{ label: '{{Imagewatermark}}: gambar mengandung tanda air yang tampak', value: 'Imagewatermark' },
 		{ label: '{{NoCoins}}: gambar menggunakan koin untuk mengindikasikan skala', value: 'NoCoins' },
 		{ label: '{{Overcompressed JPEG}}: JPEG dengan artefak tingkat tinggi', value: 'Overcompressed JPEG' },
@@ -1397,7 +1397,7 @@ Twinkle.tag.callbacks = {
 				// Special functions for merge tags
 				// Post a rationale on the talk page (mainspace only)
 				if (params.mergeReason) {
-					const mergeTalkPage = new Morebits.wiki.Page('Talk:' + params.discussArticle, 'Menambahkan tag di halaman pembicaraan ');
+					const mergeTalkPage = new Morebits.wiki.Page('Pembicaraan:' + params.discussArticle, 'Menambahkan tag di halaman pembicaraan ');
 					mergeTalkPage.setNewSectionText(params.mergeReason.trim() + ' ~~~~');
 					mergeTalkPage.setNewSectionTitle(params.talkDiscussionTitleLinked);
 					mergeTalkPage.setChangeTags(Twinkle.changeTags);
