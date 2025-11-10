@@ -946,7 +946,7 @@ Twinkle.config.init = function twinkleconfigInit() {
 				'<td class="morebits-mbox-text"><p><big><b>Sebelum memodifikasi pengatuan anda disini,</b> anda harus menghilangkan pengaturan Twinkle dan Friendly lama anda dari kulit JavaScript sendiri.</big></p>' +
 				'<p>To do this, you can <a href="' + mw.util.getUrl('User:' + mw.config.get('wgUserName') + '/' + mw.config.get('skin') +
 				'.js', { action: 'edit' }) + '" target="_blank"><b>sunting berkas kulit javascript sendiri</b></a> or <a href="' +
-				mw.util.getUrl('User:' + mw.config.get('wgUserName') + '/common.js', { action: 'edit'}) + '" target="_blank"><b>your common.js file</b></a>, menghilangkan semua baris kode yang merujuk pada <code>TwinkleConfig</code> dan <code>FriendlyConfig</code>.</p>' +
+				mw.util.getUrl('User:' + mw.config.get('wgUserName') + '/common.js', { action: 'edit'}) + '" target="_blank"><b>berkas js umum anda</b></a>, menghilangkan semua baris kode yang merujuk pada <code>TwinkleConfig</code> dan <code>FriendlyConfig</code>.</p>' +
 				'</td></tr></table>';
 			contentdiv.appendChild(contentnotice);
 		}
