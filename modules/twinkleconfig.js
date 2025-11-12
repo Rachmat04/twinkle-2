@@ -672,7 +672,7 @@ Twinkle.config.sections = [
 			{
 				name: 'combinedSingletMenus',
 				label: 'Mengganti menu dua terpisah tunggal menjadi menu dikombinasikan',
-				helptip: 'Selecting either single-issue notices or single-issue warnings as your default will make this your default if enabled.',
+				helptip: 'Memilih pemberitahuan atau peringatan tunggal sebagai default anda jika diaktifkan.',
 				type: 'boolean'
 			},
 
