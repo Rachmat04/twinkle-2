@@ -851,7 +851,7 @@ Twinkle.arv.callback.getSpiReportData = function(input) {
 	const isPuppetReport = input.category === 'puppet';
 
 	if (!isPuppetReport) {
-		input.sockpuppets = input.sockpuppets.filter((sock) => sock !== ''); // ignore empty sockpuppet inputs
+		input.sockpuppets = input.sockpuppets.filter((sock) => sock.trim() !== ''); // ignore empty sockpuppet inputs
 	}
 
 	if (isPuppetReport && !input.sockmaster) {
@@ -861,10 +861,20 @@ Twinkle.arv.callback.getSpiReportData = function(input) {
 	}
 
 	input.sockmaster = input.sockmaster || input.uid;
-	input.sockpuppets = isPuppetReport ? [input.uid] : Morebits.array.uniq(input.sockpuppets);
+	const allSocks = [sockmaster].concat(isPuppetReport ? [input.uid] : Morebits.array.uniq(input.sockpuppets));
+	const evidence = input.evidence.trim();
 
-	let text = '\n{{subst:SPI report|' +
-		input.sockpuppets.map((sock, index) => (index + 1) + '=' + sock).join('|') + '\n|evidence=' + input.evidence + ' \n';
+	let text = '\n\n=== ' + sockmaster + ' ===\n'; // header nama induk
+	text += '{{subst:SPI report|' +
+		allSocks.map((sock, index) => 'sock' + (index + 1) + '=' + sock).join('|') +
+		'}}';
+
+	if (evidence) {
+		text += '\n\n' + evidence;
+	} else {
+        text += '\n\n(Tidak ada bukti yang diberikan)';
+    }
+	text += ' ~~~~';
 
 	if (input.checkuser) {
 		text += '|checkuser=yes';
