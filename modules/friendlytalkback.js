@@ -14,7 +14,7 @@ Twinkle.talkback = function() {
 	if (!mw.config.exists('wgRelevantUserName') || Morebits.ip.isRange(mw.config.get('wgRelevantUserName'))) {
 		return;
 	}
-	Twinkle.addPortletLink(Twinkle.talkback.callback, 'TB', 'twinkle-talkback', 'Easy talkback');
+	Twinkle.addPortletLink(Twinkle.talkback.callback, 'TB', 'twinkle-talkback', 'Balasan percakapan');
 };
 
 Twinkle.talkback.callback = function() {
@@ -189,8 +189,8 @@ Twinkle.talkback.changeTarget = function(e) {
 			work_area.append({
 				type: 'input',
 				name: 'section',
-				label: 'Thread yang tertaut',
-				tooltip: 'Judul thread yang relevan pada halaman papan pengumuman.',
+				label: 'Topik yang tertaut',
+				tooltip: 'Judul topik yang relevan pada halaman papan pengumuman.',
 				value: prev_section
 			});
 			break;
@@ -224,15 +224,15 @@ Twinkle.talkback.noticeboards = {
 		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Papan pengumuman pengurus]]',
 	},
 	an3: {
-		label: "WP:AN3 (Papan pengumuman pengurus/Edit warring)",
+		label: "WP:AN3 (Papan pengumuman pengurus/Perang suntingan)",
 		text: '{{subst:An3-notice|$SECTION}} ~~~~',
-		editSummary: "Pemberitahuan diskusi di [[Wikipedia:Papan pengumuman pengurus/Edit warring]]"
+		editSummary: "Pemberitahuan diskusi di [[Wikipedia:Papan pengumuman pengurus/Perang suntingan]]"
 	},
 	ani: {
-		label: "WP:ANI (Papan pengumuman pengurus/Incidents)",
-		text: "== Notice of Administrators' noticeboard/Incidents discussion ==\n" +
+		label: "WP:ANI (Papan pengumuman pengurus/Insiden)",
+		text: "== Pemberitahuan untuk pengurus' papan pengumuman/Diskusi insiden ==\n" +
 		'{{subst:ANI-notice|thread=$SECTION}} ~~~~',
-		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Administrators\' noticeboard/Incidents]]',
+		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Permintaan perhatian pengurus/Insiden]]',
 		defaultSelected: true
 	},
 	// let's keep AN and its cousins at the top
@@ -247,9 +247,9 @@ Twinkle.talkback.noticeboards = {
 		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Biographies of living persons/Noticeboard]]'
 	},
 	coin: {
-		label: 'WP:COIN (Conflict of interest noticeboard)',
+		label: 'WP:COIN (Papan pengumunman konflik kepentingan)',
 		text: '{{subst:Coin-notice|thread=$SECTION}} ~~~~',
-		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Conflict of interest/Noticeboard]]'
+		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Permintaan perhatian pengurus/Konflik kepentingan]]'
 	},
 	drn: {
 		label: 'WP:DRN (Dispute resolution noticeboard)',
@@ -272,9 +272,9 @@ Twinkle.talkback.noticeboards = {
 		editSummary: 'Pemberitahuan diskusi di [[Wikipedia:Fringe theories/Noticeboard]]'
 	},
 	hd: {
-		label: 'WP:HD (Help desk)',
-		text: '== Your question at the Help desk ==\n{{helpdeskreply|1=$SECTION|ts=~~~~~}}',
-		editSummary: 'Anda telah membalas di [[Wikipedia:Help desk|Wikipedia help desk]]'
+		label: 'WP:HD (Warung Kopi)',
+		text: '== Pertanyaan anda di Warung kopi ==\n{{helpdeskreply|1=$SECTION|ts=~~~~~}}',
+		editSummary: 'Anda telah membalas di [[Wikipedia:Warung Kopi (Lain-lain)|Warung Kopi Wikipedia]]'
 	},
 	norn: {
 		label: 'WP:NORN (No original research noticeboard)',
@@ -293,7 +293,7 @@ Twinkle.talkback.noticeboards = {
 	},
 	th: {
 		label: 'WP:THQ (Teahouse question forum)',
-		text: "== Teahouse talkback: you've got messages! ==\n{{WP:Teahouse/Teahouse talkback|WP:Teahouse/Questions|$SECTION|ts=~~~~}}",
+		text: "== Teahouse talkback: anda mendapatkan pesan! ==\n{{WP:Teahouse/Teahouse talkback|WP:Teahouse/Questions|$SECTION|ts=~~~~}}",
 		editSummary: 'Anda telah membalas di [[Wikipedia:Teahouse/Questions|Teahouse question board]]'
 	},
 	vrt: {

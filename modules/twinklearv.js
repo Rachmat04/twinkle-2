@@ -427,7 +427,6 @@ Twinkle.arv.callback.changeCategory = function (e) {
 									type: 'text',
 									name: 's_resolves_free'
 								});
-
 								const $free_label = $('<label>', {
 									for: 's_resolves_free',
 									html: 'Pranala URL dari diff dengan diskusi tambahan: '

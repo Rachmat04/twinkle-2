@@ -4023,7 +4023,7 @@ Morebits.wiki.page = function(pageName, status) {
 		if (response.edit.captcha) {
 			ctx.statusElement.error('Tidak dapat menyimpan halaman karena peladen wiki menginginkan anda untuk mengisi CAPTCHA.');
 		} else {
-			ctx.statusElement.error(msg('api-error-unknown', 'Galat tidak diketahui diterima dari API sementar menyimpan halaman'));
+			ctx.statusElement.error(msg('api-error-unknown', 'Galat tidak diketahui diterima dari API sementara menyimpan halaman'));
 		}
 
 		// force error to stay on the screen

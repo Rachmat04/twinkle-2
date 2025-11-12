@@ -37,7 +37,7 @@ Twinkle.speedy.data = [
 		subgroup: {
 			name: 'reason_1',
 			type: 'input',
-			label: 'Rationale:',
+			label: 'Kriteria:',
 			size: 60
 		},
 		hideWhenMultiple: true

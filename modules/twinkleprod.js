@@ -23,6 +23,11 @@ Twinkle.prod = function twinkleprod() {
 // Used in edit summaries, for comparisons, etc.
 let namespace;
 
+const namespaceTranslations = {
+    'article': 'artikel',
+    'file': 'berkas'
+	};
+
 Twinkle.prod.callback = function twinkleprodCallback() {
 	Twinkle.prod.defaultReason = Twinkle.getPref('prodReasonDefault');
 
@@ -280,7 +285,8 @@ Twinkle.prod.callbacks = {
 					summaryText = 'Mengusulkan penghapusan artikel per [[WP:UP]].';
 					tag = '{{subst:prod blp' + (params.usertalk ? '|help=off' : '') + '}}';
 				} else {
-					summaryText = 'Mengusulkan ' + namespace + ' untuk dihapus per [[WP:UP]].';
+					const translatedNamespace = namespaceTranslations[namespace] || namespace;
+					summaryText = 'Mengusulkan ' + translatedNamespace  + ' untuk dihapus per [[WP:UP]].';
 					tag = '{{subst:prod|1=' + Morebits.string.formatReasonText(params.reason) + (params.usertalk ? '|help=off' : '') + '}}';
 				}
 

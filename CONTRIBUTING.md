@@ -6,9 +6,9 @@ Banyak cara untuk membantu!
 
 ## Pelaporan galat dan permintaan fitur
 
-Jika anda menemukan sebuah galat, hebat!  Anda dapat [open a new GitHub issue here](https://github.com/azatoth/twinkle/issues/new) (GitHub account required) atau dapat melaporkannya di [Pembicaraan Wiki:Twinkle][Pembicaraan Wiki:Twinkle].  Bigger changes or more complicated requests should be made on-wiki so other users can take part in the discussion of your feature proposal.  If you're unsure if something is a bug, other editors may be able to help identify the issue.  Be sure to search the talk page archives and GitHub issues to see if your request has already been discussed in the past.
+Jika anda menemukan sebuah galat, hebat! Anda dapat [open a new GitHub issue here](https://github.com/azatoth/twinkle/issues/new) (GitHub account required) atau dapat melaporkannya di [Pembicaraan Wiki:Twinkle][Pembicaraan Wiki:Twinkle].  Bigger changes or more complicated requests should be made on-wiki so other users can take part in the discussion of your feature proposal.  If you're unsure if something is a bug, other editors may be able to help identify the issue.  Be sure to search the talk page archives and GitHub issues to see if your request has already been discussed in the past.
 
-Apapun kasusnya, lebih mendeksripsikan permasalahnnya mempermudah untuk merespon laporan atau permintaan anda.
+Apapun kasusnya, mendeskripsikan lebih detail permasalahnnya mempermudah untuk merespon laporan atau permintaan anda.
 
 ### Melaporkan sebuah galat
 
@@ -28,15 +28,15 @@ Jika anda yakin menemukan sebuah masalah keamanan, ikuti panduan di [SECURITY.md
 
 Jika anda ingin membantu pengembangan Twinkle, sangat indah!  Siapapun dapat berkontribusi, dan mudah untuk melakukannya.
 
-First, familiarize yourself with the code; most likely, the changes you want are to one of the [modules](./modules); you can also check out the [individual Gadget pages][twinkle_gadget] onwiki.  If you want to propose changes yourself, [fork the repository](https://help.github.com/articles/fork-a-repo/) to make sure you always have the latest versions.  If you're new to GitHub or Git in general, you probably want to read [Getting started with GitHub](https://help.github.com/en/github/getting-started-with-github) first.
+Pertama, ketahui dahulu terhadap kodenya; biasanya, perubahan yang anda inginkan merujuk pada salah satu [modules](./modules); you can also check out the [individual Gadget pages][twinkle_gadget] onwiki.  Jika anda mengusulkan perubahan anda, [fork the repository](https://help.github.com/articles/fork-a-repo/) untuk memastikan selalu mempunyai versi terbaru.  Jika anda baru ke GitHub atau Git secara umum, anda mungkin ingin membaca [Getting started with GitHub](https://help.github.com/en/github/getting-started-with-github) dahulu.
 
-Once you've got a local fork up and running, commit your changes!
+Saat anda mempunyai fork lokal dan berjalan, commit perubahan anda!
 
 ### Tes kode anda
 
 Mencoba Twinkle dapat sedikit susah, but the most straightforward way to test your code is to open up your [browser's console window][jserrors] and paste in your new code.  You'll have to load the new version by running the corresponding function in your console, e.g., `Twinkle.protect()` for twinkleprotect.js.
 
-Some things to watch out for:
+Beberapa hal yang perlu diperhatikan:
 
 - If your tests have any chance of making actual edits, consider making them in a sandbox; be aware that some things may not work properly outside the appropriate namespace.  An even better place to test is on the [test wiki](http://test.wikipedia.org)!  Some parts of Twinkle rely on specific template code or on certain wiki-preferences, so testing certain things outside of enWiki may be difficlut (e.g., pending changes).
 - The non-module scripts `morebits.js` and `twinkle.js` are usually more complicated to test.
@@ -47,13 +47,13 @@ As Twinkle is used many thousands of times a day, changes to how Twinkle works m
 
 ### Mengirim pull request anda
 
-When you are ready to submit, commit your changes on a new branch, then [initiate a pull request (PR)](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).  The title of your pull request should be the module you are proposing changes to, followed by a brief but descriptive explanation of what the changes do, such as:
+Saat anda ingin mengirim, commit perubahan anda di branch baru (buat branch dengan nama yang diinginkan tapi jangan menghapus awalan "pr/"), kemudian [initiate a pull request (PR)](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).  Judul dari pull request harus berupa modul yang anda ingin ubah, diikuti deskripsi yang anda telah lakukan, seperti:
 
     xfd: Prevent sysops from deleting the main page
 
 The usual rule of thumb is that a good subject line will complete the sentence "*If applied, this commit will...*"  The full commit message is a good place to explain further details, both for reviewers and anyone in the future, specifically focusing on *why* the changes are being made, not *how*.  There are many guides to writing good commit messages, one particularly helpful one is by @cbeams: https://chris.beams.io/posts/git-commit/
 
-If you made multiple commits while working on the same feature, it's a good idea to [squash and rebase your commits](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) before submitting your PR; a good policy is that every commit should be capable of replacing the live on-wiki Gadget file for all users.  Separate ideas or enhancements should be different commits, and entirely separate concepts should be different pull requests.  For example, if you made three commits while changing the pulldown options in `twinkleprotect.js` and `twinklebatchprotect.js`, those should be squashed into one commit, but if you also disabled loading `twinklespeedy.js` and `twinklexfd.js` on the mainpage, that should be a separate pull request.  See also [how to file a bug report or feature request](README.md#how-to-file-a-bug-report-or-feature-request).
+Jika anda membuat beberapa commit sementara bekerja di fitur yang sama, dianjurkan untuk [squash and rebase your commits](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) before submitting your PR; a good policy is that every commit should be capable of replacing the live on-wiki Gadget file for all users.  Separate ideas or enhancements should be different commits, and entirely separate concepts should be different pull requests.  For example, if you made three commits while changing the pulldown options in `twinkleprotect.js` and `twinklebatchprotect.js`, those should be squashed into one commit, but if you also disabled loading `twinklespeedy.js` and `twinklexfd.js` on the mainpage, that should be a separate pull request.  See also [how to file a bug report or feature request](README.md#how-to-file-a-bug-report-or-feature-request).
 
 ### Style guideline
 
@@ -63,7 +63,7 @@ For consistency and to cut down on potential errors, we've recently decided to u
 - Spacing: `if (condition) {`
 - Each: The `array.forEach(function(item) {` method is preferable to `$.each(array, function(index, item) {`
 
-## Expectations of Participants
+## Harapan kontributor
 
 Everyone is welcome and encouraged to join in, regardless of experience.  Anybody submitting issues, code, reviews, or comments to the repository is expected to do so while complying with the principles of Wikimedia's [Code of Conduct for technical spaces][conduct].
 
