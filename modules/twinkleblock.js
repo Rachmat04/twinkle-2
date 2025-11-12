@@ -7,6 +7,26 @@ let relevantUserName, blockedUserName, blockWindow;
 const menuFormattedNamespaces = $.extend({}, mw.config.get('wgFormattedNamespaces'));
 menuFormattedNamespaces[0] = '(Article)';
 
+const durationTranslations = { //lokalisasi penerjemahan waktu
+    '3 hours': '3 jam',
+    '12 hours': '12 jam',
+    '24 hours': '24 jam',
+    '31 hours': '31 jam',
+    '36 hours': '36 jam',
+    '48 hours': '48 jam',
+    '60 hours': '60 jam',
+    '72 hours': '72 jam',
+    '1 week': '1 minggu',
+    '2 weeks': '2 minggu',
+    '1 month': '1 bulan',
+    '3 months': '3 bulan',
+    '6 months': '6 bulan',
+    '1 year': '1 tahun',
+    '2 years': '2 tahun',
+    '3 years': '3 tahun',
+    'infinity': 'selamanya'
+};
+
 /*
  ****************************************
  *** twinkleblock.js: Block module
@@ -819,7 +839,7 @@ Twinkle.block.callback.change_action = function twinkleblockCallbackChangeAction
  *   autoblock: <autoblock any IP addresses used (for registered users only)>
  *   disabletalk: <disable user from editing their own talk page while blocked>
  *   expiry: <string - expiry timestamp, can include relative times like "5 months", "2 weeks" etc>
- *   forUnregisteredOnly: <show block option in the interface only if the relevant user is an IP>
+ *   forIPsOnly: <memunculkan opsi blokir di antarmuka hanya jika pengguna tersebut adalah IP>
  *   forRegisteredOnly: <show block option in the interface only if the relevant user is registered>
  *   label: <string - label for the option of the dropdown in the interface (keep brief)>
  *   noemail: prevent the user from sending email through Special:Emailuser
@@ -843,7 +863,7 @@ Twinkle.block.callback.change_action = function twinkleblockCallbackChangeAction
 Twinkle.block.blockPresetsInfo = {
 	'anonblock': {
 		expiry: '31 hours',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		reason: '{{anonblock}}',
@@ -851,7 +871,7 @@ Twinkle.block.blockPresetsInfo = {
 	},
 	'anonblock - school': {
 		expiry: '36 hours',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		reason: '{{anonblock}} <!-- Likely a school based on behavioral evidence -->',
@@ -860,7 +880,7 @@ Twinkle.block.blockPresetsInfo = {
 	},
 	'blocked proxy': {
 		expiry: '1 year',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		hardblock: true,
@@ -869,7 +889,7 @@ Twinkle.block.blockPresetsInfo = {
 	},
 	'CheckUser block': {
 		expiry: '1 week',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		reason: '{{CheckUser block}}',
@@ -885,7 +905,7 @@ Twinkle.block.blockPresetsInfo = {
 		sig: '~~~~'
 	},
 	'checkuserblock-wide': {
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		reason: '{{checkuserblock-wide}}',
@@ -893,7 +913,7 @@ Twinkle.block.blockPresetsInfo = {
 	},
 	'colocationwebhost': {
 		expiry: '1 year',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nonstandard: true,
 		reason: '{{colocationwebhost}}',
 		sig: null
@@ -907,14 +927,14 @@ Twinkle.block.blockPresetsInfo = {
 		sig: '~~~~'
 	},
 	'school block': {
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		reason: '{{school block}}',
 		sig: '~~~~'
 	},
 	'spamblacklistblock': {
-		forAnonOnly: true,
+		forIPsOnly: true,
 		expiry: '1 month',
 		disabletalk: true,
 		nocreate: true,
@@ -925,19 +945,19 @@ Twinkle.block.blockPresetsInfo = {
 	//   reason: '{{rangeblock}}',
 	//   nocreate: true,
 	//   nonstandard: true,
-	//   forAnonOnly: true,
+	//   forIPsOnly: true,
 	//   sig: '~~~~'
 	// },
 	'tor': {
 		expiry: '1 year',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nonstandard: true,
 		reason: '{{Tor}}',
 		sig: null
 	},
 	'webhostblock': {
 		expiry: '1 year',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nonstandard: true,
 		reason: '{{webhostblock}}',
 		sig: null
@@ -954,7 +974,7 @@ Twinkle.block.blockPresetsInfo = {
 	'uw-ablock': {
 		autoblock: true,
 		expiry: '31 hours',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		pageParam: true,
 		reasonParam: true,
@@ -1079,7 +1099,7 @@ Twinkle.block.blockPresetsInfo = {
 		summary: 'Anda diblokir karena mencoba menyerang pengguna/subjek lain'
 	},
 	'uw-ipevadeblock': {
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		reason: 'Menghindari pemblokiran',
 		summary: 'Alamat IP Anda diblokir karena digunakan untuk menghindari pemblokiran'
@@ -1252,7 +1272,7 @@ Twinkle.block.blockPresetsInfo = {
 	},
 	'zombie proxy': {
 		expiry: '1 month',
-		forAnonOnly: true,
+		forIPsOnly: true,
 		nocreate: true,
 		nonstandard: true,
 		reason: '{{zombie proxy}}',
@@ -1369,7 +1389,7 @@ Twinkle.block.blockGroups = [
 		list: [
 			{ label: 'Beriklan', value: 'uw-adblock' },
 			{ label: 'Penegakan kebijakan arbitrase', value: 'uw-aeblock' },
-			{ label: 'Menghindari pemblokiran – IP', value: 'uw-ipevadeblock' },
+			{ label: 'Menghindari pemblokiran', value: 'uw-ipevadeblock' },
 			{ label: 'Melanggar kebijakan tokoh yang masih hidup', value: 'uw-bioblock' },
 			{ label: 'Melanggar hak cipta', value: 'uw-copyrightblock' },
 			{ label: 'Membuat halaman yang tidak pantas', value: 'uw-npblock' },
@@ -1477,16 +1497,21 @@ Twinkle.block.callback.filtered_block_groups = function twinkleblockCallbackFilt
 
 			const blockSettings = Twinkle.block.blockPresetsInfo[blockPreset.value];
 
-			let registrationRestrict;
+			let allowedUserType;
+			// for regular users and temporary accounts
 			if (blockSettings.forRegisteredOnly) {
-				registrationRestrict = Twinkle.block.isRegistered;
-			} else if (blockSettings.forUnregisteredOnly) {
-				registrationRestrict = !Twinkle.block.isRegistered;
+				allowedUserType = Twinkle.block.isRegistered;
+			// for IPs
+			} else if (blockSettings.forIPsOnly) {
+				allowedUserType = !Twinkle.block.isRegistered;
+			// for IPs and temporary accounts
+			} else if (blockSettings.forUnnamedOnly) {
+				allowedUserType = !Twinkle.block.isRegistered || mw.util.isTemporaryUser(mw.config.get('wgRelevantUserName'));
 			} else {
-				registrationRestrict = true;
+				allowedUserType = true;
 			}
 
-			if (!(blockSettings.templateName && show_template) && registrationRestrict) {
+			if (!(blockSettings.templateName && show_template) && allowedUserType) {
 				const templateName = blockSettings.templateName || blockPreset.value;
 				return {
 					label: (show_template ? '{{' + templateName + '}}: ' : '') + blockPreset.label,
@@ -1946,8 +1971,8 @@ Twinkle.block.callback.getBlockNoticeWikitext = function(params) {
 			if (params.indefinite) {
 				text += '|indef=yes';
 			} else if (!params.blank_duration && !new Morebits.Date(params.expiry).isValid()) {
-				// Block template wants a duration, not date
-				text += '|time=' + params.expiry;
+				const translatedExpiry = durationTranslations[params.expiry] || params.expiry;
+				text += '|time=' + translatedExpiry;
 			}
 		}
 

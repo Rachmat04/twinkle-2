@@ -120,7 +120,7 @@ Twinkle.warn.callback = function twinklewarnCallback() {
 		Twinkle.warn.callbacks.preview(result); // |result| is defined below
 	});
 	previewlink.style.cursor = 'pointer';
-	previewlink.textContent = 'Preview';
+	previewlink.textContent = 'Pratinjau';
 	more.append({ type: 'div', id: 'warningpreview', label: [ previewlink ] });
 	more.append({ type: 'div', id: 'twinklewarn-previewbox', style: 'display: none' });
 
@@ -1496,14 +1496,10 @@ Twinkle.warn.callback.change_subcategory = function twinklewarnCallbackChangeSub
 	$('#tw-warn-red-notice').remove();
 	let $redWarning;
 	if (selected_template === 'uw-username') {
-		$redWarning = $("<div style='color: red;' id='tw-warn-red-notice'>{{uw-username}} tidak boleh digunakan untuk pelanggaran kebijakan nama pengguna yang jelas atau terang-terangan. " +
-			"Untuk pelanggaran yang terang-terangan, laporkan langsung ke UAA melalui tab ARV di Twinkle. " +
-			'Templat {{uw-username}} sebaiknya hanya digunakan pada kasus khusus untuk membuka pembicaraan dengan pengguna.</div>');
-		$redWarning.insertAfter(Morebits.QuickForm.getElementLabelObject(e.target.form.reasonGroup));
 	} else if (selected_template === 'uw-coi-username') {
-		$redWarning = $("<div style='color: red;' id='tw-warn-red-notice'>{{uw-coi-username}} tidak boleh digunakan untuk pelanggaran kebijakan nama pengguna yang jelas atau terang-terangan. " +
-			"Untuk pelanggaran yang terang-terangan, laporkan langsung ke UAA melalui tab ARV di Twinkle. " +
-			'Templat {{uw-coi-username}} sebaiknya hanya digunakan pada kasus khusus untuk membuka pembicaraan dengan pengguna.</div>');
+		$redWarning = $("<div style='color: red;' id='tw-warn-red-notice'>{{uw-coi-username}} harusnya <b>tidak</b> digunakan untuk pelanggaran kebijakan nama pengguna <b>secara terang-terangan</b>. " +
+			"Pelanggaran terang-terangan harus dilaporkan langsung kepada UAA (melalui tab ARV Twinkle). " +
+			'{{uw-coi-username}} hanya boleh digunakan dalam kasus-kasus tertentu untuk melakukan diskusi dengan pengguna.</div>');
 		$redWarning.insertAfter(Morebits.QuickForm.getElementLabelObject(e.target.form.reasonGroup));
 	}
 };
@@ -1678,7 +1674,7 @@ Twinkle.warn.callbacks = {
 							}
 						});
 						const $statusNode = $('<div>', {
-							text: mw.config.get('wgRelevantUserName') + ' baru saja mendapat peringatan tingkat 4 (' + latest.type + ') jadi lebih baik melaporkannya saja; ',
+							text: mw.config.get('wgRelevantUserName') + ' baru saja mendapat peringatan tingkat 4 (' + latest.type + ') lebih baik melaporkannya saja; ',
 							css: {color: 'red' }
 						});
 						$statusNode.append($link[0]);
